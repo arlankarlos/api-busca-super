@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>BuscaSuper</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+    <link rel="icon" sizes="32x32" href="{{ url_for('static', filename='img/favicon-32x32.png') }}">
+    <link rel="icon" sizes="96x96" href="{{ url_for('static', filename='img/favicon-96x96.png') }}">
+    <link rel="icon" sizes="16x16" href="{{ url_for('static', filename='img/favicon-16x16.png') }}">
+    
+
+</head>
+<body>
+    <div class="container">
+        <div class="header-container">
+            <h1 onclick="redirecionarParaPaginaInicial()">
+                <img src="{{ url_for('static', filename='img/icon-72x72.png') }}" alt="Logotipo" class="logo" />
+                BuscaSuper
+            </h1>
+
+            <!-- Formulário de Pesquisa Principal -->
+            <form method="post" class="search-form" id="searchForm">
+                <input type="text" name="consulta" placeholder="Digite o nome do produto" required />
+                <button type="submit"><span class="material-icons">search</span></button>
+            </form>
+
+            <!-- Exibe o campo de Filtro e o alerta apenas se houver produtos agrupados -->
+            {% if produtos_agrupados %}
+                <!-- Flexbox container para filtro e ordenação por preço -->
+                <div class="filtro-e-ordenacao">
+                    <div class="filtro-container">
+                        <input maxlength="20" type="text" id="filtro" placeholder="Filtrar por nome, marca ou site" onkeyup="filtrarProdutos()" />
+                        <span class="material-icons clear-icon" onclick="limparFiltro()">close</span>
+                    </div>
+                    <label class="ordenar-label">
+                        <input type="checkbox" id="ordenarPreco" onchange="ordenarPorPreco()">
+                        <span class="material-icons">sort</span>
+                        <span>Ordenar por menor preço</span>
+                    </label>
+                </div>
+                
+                <h4 class="h4-alerta">Alguns produtos podem estar indisponíveis.</h4>
+            {% endif %}
+        </div>
+
+        <div class="content">
+            {% if mensagem %}
+                <p class="mensagem">{{ mensagem }}</p>
+            {% endif %}
+
+            {% if produtos_agrupados %}
+                <div class="cards-container" id="cardsContainer">
+                    {% for chave_agrupamento, grupos in produtos_agrupados.items() %}
+                        <div class="produto-grupo">
+                            <div class="grupo-produtos">
+                                {% for grupo in grupos %}
+                                    {% for site, detalhes in grupo.items() %}
+                                        <div class="card">
+                                            <div class="card-content">
+                                                {% if detalhes.imagem_url %}
+                                                    <img src="{{ detalhes.imagem_url }}" alt="{{ detalhes.nome_produto }}" />
+                                                {% else %}
+                                                    <p>Imagem não disponível.</p>
+                                                {% endif %}
+                                                <div class="produto-info">
+                                                    <p class="site-produto">
+                                                        <strong>{{ site }}</strong>
+                                                    </p>
+                                                    <p class="nome-produto">{{ detalhes.nome_produto or 'Não disponível' }}</p>
+                                                    <p class="marca-produto">{{ detalhes.marca or 'Não disponível' }}</p>
+                                                    <p class="preco-produto" data-preco="{{ detalhes.preco }}">
+                                                        <strong>Preço:</strong>
+                                                        {% if detalhes.preco is not none %}
+                                                            R$ {{ detalhes.preco|round(2) }}
+                                                        {% else %}
+                                                            Não disponível
+                                                        {% endif %}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <script src="/static/js/app.js">
+    </script>
+</body>
+</html>

@@ -1,0 +1,393 @@
+/* Container Flex para o formulário e o campo de filtro */
+.header-container {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #4CAF50;
+    z-index: 1000;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header-container h1 {
+    color: #4d504d;
+    background-color: #00ff088d;
+    display: flex;            /* Exibe o título e o logotipo na mesma linha */
+    align-items: center;      /* Alinha verticalmente o logotipo com o texto */
+    gap: 10px;                /* Espaço entre o logotipo e o texto */
+}
+
+.logo {
+    width: 50px;              /* Define a largura do logotipo */
+    height: auto;             /* Mantém a proporção automática */
+    margin-right: 10px; /* Espaçamento entre o logotipo e o texto */
+}
+
+
+/* Estilo para o container flexbox de filtro e ordenação */
+.filtro-e-ordenacao {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    gap: 5px;
+}
+
+/* Ajuste de largura e espaçamento para o campo de filtro */
+#filtro {
+    width: auto;        /* O input ocupa o espaço restante */
+    padding: 10px;
+    border-radius: 10px;
+    border: 3px solid #ccc;
+    font-size: 16px;
+    padding-right: 35px;  /* Adiciona margem inferior */
+}
+
+.filtro-container {
+    position: relative;
+    display: flex;          /* Flexbox para facilitar o alinhamento */
+    align-items: center;     /* Alinha o conteúdo verticalmente */
+    width: 70%;              /* Defina a largura desejada do container */
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+.clear-icon {
+    margin-left: -35px;      /* Move o ícone para dentro do input */
+    cursor: pointer;
+    font-size: 20px;
+    color: #999;
+    display: none;           /* Oculto por padrão */
+}
+
+/* Mostra o ícone "X" somente quando o campo de filtro contém texto */
+#filtro:not(:placeholder-shown) + .clear-icon {
+    display: inline-block;
+}
+
+/* Estilo para o checkbox de ordenação */
+.ordenar-label {
+    font-size: 14px;
+    display: flex;          /* Flexbox para alinhar ícone e texto */
+    align-items: center;
+    cursor: pointer;
+}
+
+/* Estilo para o ícone de ordenação */
+.ordenar-label .material-icons {
+    font-size: 18px;
+    margin-right: 8px;       /* Espaço entre o ícone e o texto */
+    vertical-align: middle;  /* Alinhar o ícone com o texto */
+}
+
+/* Ajuste do checkbox para ficar bem alinhado */
+.ordenar-label input[type="checkbox"] {
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+
+.search-form {
+    display: flex;                /* Usa flexbox para alinhar os itens em uma única linha */
+    align-items: center;          /* Alinha verticalmente o botão com o input */
+    gap: 5px;                     /* Espaçamento entre o input e o botão */
+}
+
+.search-form input {
+    flex: 1;                      /* Faz o input ocupar todo o espaço disponível */
+    padding: 10px;                /* Adiciona espaçamento interno no campo de texto */
+    font-size: 16px;              /* Define o tamanho da fonte do input */
+    border: 3px solid #ccc;       /* Borda leve para o input */
+    border-radius: 10px;           /* Borda arredondada no input */
+}
+
+.search-form button {
+    padding: 7px;                /* Padding interno do botão */
+    border: none;                 /* Remove a borda do botão */
+    background-color:#a8baa9 ;    /* Cor de fundo do botão */
+    color: white;                 /* Cor do texto do botão */
+    border-radius: 5px;           /* Arredondamento das bordas do botão */
+    cursor: pointer;              /* Define o cursor como ponteiro para o botão */
+    font-size: 16px;              /* Tamanho do ícone dentro do botão */
+    width: 15%;                  /* Largura automática do botão */
+}
+
+.search-form button:hover {
+    background-color: #4d504d;    /* Cor de fundo mais escura no hover */
+}
+
+
+
+
+/* Restante dos estilos */
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos gerais */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    padding: 10px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+/* Títulos */
+h1,
+h2 {
+    color: #f2f6f2;
+    /* Define a cor do texto como #4CAF50 (verde) */
+    text-align: center;
+    /* Centraliza o texto */
+    margin-bottom: 20px;
+    /* Define um espaçamento inferior de 20px abaixo dos títulos */
+    font-size: 1.8rem;
+    /* Define o tamanho da fonte como 1.8rem */
+}
+
+/* Mensagem */
+.mensagem {
+    text-align: center;
+    margin-bottom: 20px;
+    color: red;
+    font-size: 1.2rem;
+}
+
+/* Grid de Cards */
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    /* display: grid; */
+    /* grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); */
+    gap: 15px;
+    /* justify-items: center; */
+}
+
+
+
+
+
+/* Estilo dos Cards */
+/* Estilo geral para o cartão */
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    overflow: hidden;
+    /* Certifique-se de que o conteúdo não "vaze" do cartão */
+}
+
+/* Efeitos de hover para desktop */
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsividade das imagens nos cartões */
+.card img {
+    width: 100%;
+    /* Largura total para controle via media queries */
+    height: auto;
+    /* Manter a proporção da imagem */
+    object-fit: cover;
+    /* Garantir que a imagem cubra o espaço sem distorcer */
+    border-radius: 10px;
+}
+
+
+
+
+/* Ajuste para dispositivos móveis (telas pequenas) */
+@media (max-width: 768px) {
+    .card img {
+        width: 25vw;
+        /* 50% da largura da tela (viewport width) */
+        max-height: calc(30% * 50vw);
+        /* A altura da imagem é 30% da largura da imagem */
+    }
+}
+
+/* Ajuste para telas maiores (computadores e tablets) */
+@media (min-width: 769px) {
+    .card img {
+        width: 10vw;
+        /* 10% da largura da tela (viewport width) */
+        max-height: calc(30% * 25vw);
+        /* A altura da imagem é 30% da largura da imagem */
+    }
+}
+
+.produto-info {
+    text-align: center;
+}
+
+
+
+
+/* Spinner de carregamento */
+.loader {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 2s linear infinite;
+    display: none;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Estilo do card do produto */
+.card {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 10px;
+    width: 250px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+/* Estilo da mensagem de carregamento */
+.mensagem-carregando {
+    font-size: 16px;
+    color: #333;
+    text-align: center;
+    margin: 20px;
+}
+
+
+/* TAG H2 Vermelha Alerta */
+
+.h4-alerta {
+    color: white;
+    /* Cor do texto branca */
+    background-color: #4CAF50;
+    /* Cor de fundo vermelha */
+    padding: 10px;
+    /* 15px de padding superior, 10px nas laterais e inferior */
+    border-radius: 15px;
+    /* Arredondar as bordas */
+    font-weight: bold;
+    /* Deixar o texto em negrito */
+    display: inline-block;
+    /* Ajusta o fundo ao tamanho do texto */
+    width: 100%;
+    /* Garante que o tamanho se ajuste ao texto */
+    text-align: left;
+    /* Alinha o texto à esquerda para evitar comportamentos inesperados */
+    white-space: nowrap;
+    /* Evita que o texto quebre em várias linhas */
+}
+
+/* Espaçamento para que o conteúdo não fique escondido sob os elementos fixos */
+.content {
+    padding-top: 235px;
+    /* Ajustar conforme necessário */
+}
+
+.produto-info p {
+    margin-bottom: 10px;
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    .search-form input[type="text"] {
+        font-size: 1.1rem;
+        padding: 10px;
+    }
+
+    .search-form button {
+        padding: 7px;
+        font-size: 1.1rem;
+        width: 25%;
+    }
+
+    h1,
+    h2 {
+        color: #fefefe;
+        /* Define a cor do texto como #4CAF50 (verde) */
+        font-size: 1.6rem;
+    }
+
+    .card {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .search-form input[type="text"],
+    .search-form button {
+        font-size: 1rem;
+        padding: 7px;
+    }
+
+    h1,
+    h2 {
+        font-size: 1.4rem;
+    }
+
+    .card {
+        padding: 10px;
+    }
+
+    .produto-info p {
+        font-size: 0.9rem;
+    }
+}
+
