@@ -11,8 +11,8 @@ def send_email(to_email, subject, message):
     # Configurações do servidor Gmail
     smtp_server = "smtp.gmail.com"
     smtp_port = 465  # Porta para SMTP com SSL
-    sender_email = "prfakgn@gmail.com"  # Seu e-mail Gmail
-    sender_password = "gytcbkmupdklzkea"      # Sua senha do Gmail ou App Password
+    sender_email = "@gmail.com"  # Seu e-mail Gmail
+    sender_password = ""      # Sua senha do Gmail ou App Password
 
     # Configuração do e-mail
     msg = MIMEMultipart()
@@ -29,7 +29,7 @@ def send_email(to_email, subject, message):
             server.login(sender_email, sender_password)  # Login
 
             # Envia o e-mail
-            server.sendmail(sender_email, 'prfakgn@gmail.com', msg.as_string())
+            server.sendmail(sender_email, '@gmail.com', msg.as_string())
             print("E-mail enviado com sucesso!")
     except Exception as e:
         print(f"Erro ao enviar e-mail: {e}")
